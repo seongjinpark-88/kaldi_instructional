@@ -1,0 +1,1 @@
+../../../INSTRUCTIONAL/local/prepare_dict.sh
