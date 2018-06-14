@@ -31,7 +31,7 @@ kaldi_instructional에 해당하는 파일들은 github에서 내려받으실 �
 
 ```bash
 # 작업을 위한 scratch 폴더를 / 아레에 생성
-mkdir /scratch
+sudo mkdir /scratch
 
 # /scratch 폴더로 이동
 cd /scratch
