@@ -59,7 +59,7 @@ sudo git checkout
 docker pull mcapizzi/kaldi_instructional
 ```
 
-* **Note:** Docker가 제대로 실행되지 않을 경우 https://stackoverflow.com/questions/21871479/docker-cant-connect-to-docker-daemon 이 포스트를 
+* **Note:** Docker가 제대로 실행되지 않을 경우 https://stackoverflow.com/questions/21871479/docker-cant-connect-to-docker-daemon 이 포스트를 참고하세요.
 
 * git에서 받은 파일을 통해 `Docker`를 스스로 구축할 수도 있습니다. 현재는 `openfst` 버전의 변화로 인해 오류가 발생하여 확인중에 있습니다. 
 
