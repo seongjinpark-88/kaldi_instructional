@@ -22,7 +22,7 @@ Resource 폴더 아래에 코드에서 사용한 자료들이 모여있습니다
 * Mac에서 Docker 설치법: https://docs.docker.com/docker-for-mac/install/
 * 전반적인 Docker 설치법: https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html#linux
 
-* **Note:** Windows Ubuntu의 경우 `sudo apt-get install docker.i.o`, 혹은 `sudo apt-get install docker.io` 명령어로 설치하여야 합니다. 
+* **Note:** Windows Ubuntu의 경우 https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/ 를 참고하여 Docker를 설치한 이후, Windows Ubuntu에서 실행하시면 됩니다. 
 
 
 ### kaldi_instructional 내려받기
@@ -59,9 +59,7 @@ sudo git checkout
 docker pull mcapizzi/kaldi_instructional
 ```
 
-* **Note:** Docker가 제대로 실행되지 않을 경우 https://stackoverflow.com/questions/21871479/docker-cant-connect-to-docker-daemon 이 포스트를 참고하세요.
-
-* **Note:** 윈도우 10에서 실행한 우분투에서 Docker를 사용하는 방법은 https://code.iamseapy.com/archives/116 를 
+* **Note:** 윈도우 10에서 실행한 우분투에서 Docker를 사용하는 방법은 https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/ 를 참고하세요. 
 
 * git에서 받은 파일을 통해 `Docker`를 스스로 구축할 수도 있습니다. 현재는 `openfst` 버전의 변화로 인해 오류가 발생하여 확인중에 있습니다. 
 
