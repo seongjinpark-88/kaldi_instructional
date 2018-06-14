@@ -6,7 +6,7 @@ MAINTAINER Michael Capizzi <mcapizzi@email.arizona.edu>
 # ENV and ARG variables
 ARG HOME=/scratch
 ENV SHELL=/bin/bash
-ENV KALDI_PATH=${HOME}/kaldi
+ENV KALDI_PATH=${HOME}/kaldi_instruction
 ENV KALDI_INSTRUCTIONAL_PATH=${KALDI_PATH}/egs/INSTRUCTIONAL
 
 # install dependencies
@@ -55,9 +55,9 @@ RUN pip install plotly pynlpl graphviz
 
 # clone kaldi_instructional
 WORKDIR ${HOME}
-RUN git clone https://github.com/michaelcapizzi/kaldi.git
+RUN git clone https://github.com/seongjinpark-88/kaldi_instruction.git
 WORKDIR ${KALDI_PATH}
-RUN git fetch && git checkout kaldi_instructional
+RUN git fetch && git checkout
 
 # install kaldi-specific tools
 WORKDIR ${KALDI_PATH}/tools
