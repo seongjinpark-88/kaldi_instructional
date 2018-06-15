@@ -55,15 +55,15 @@ RUN pip install plotly pynlpl graphviz
 
 # clone kaldi_instructional
 WORKDIR ${HOME}
-RUN git clone https://github.com/michaelcapizzi/kaldi.git
+RUN git clone https://github.com/seongjinpark-88/kaldi.git
 WORKDIR ${KALDI_PATH}
-RUN git fetch && git checkout kaldi_instructional
+RUN git fetch && git checkout
 
 # install kaldi-specific tools
 WORKDIR ${KALDI_PATH}/tools
 # irstlm
-ENV IRSTLM=${KALDI_PATH}/tools/irstlm
 RUN extras/install_irstlm.sh
+ENV IRSTLM=${KALDI_PATH}/tools/irstlm
 RUN export PATH=${PATH}:${IRSTLM}/bin
 
 # tensorflow (python)
@@ -81,7 +81,7 @@ RUN export PATH=${PATH}:${IRSTLM}/bin
 
 # compile remaining tools
 WORKDIR ${KALDI_PATH}/tools
-RUN make
+RUN make -j 3
 
 # compile kaldi source code
 WORKDIR ${KALDI_PATH}/src
