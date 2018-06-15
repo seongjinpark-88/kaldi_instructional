@@ -6,7 +6,7 @@ MAINTAINER Michael Capizzi <mcapizzi@email.arizona.edu>
 # ENV and ARG variables
 ARG HOME=/scratch
 ENV SHELL=/bin/bash
-ENV KALDI_PATH=${HOME}/kaldi_instruction
+ENV KALDI_PATH=${HOME}/kaldi_instructional
 ENV KALDI_INSTRUCTIONAL_PATH=${KALDI_PATH}/egs/INSTRUCTIONAL
 
 # install dependencies
@@ -81,7 +81,7 @@ RUN export PATH=${PATH}:${IRSTLM}/bin
 
 # compile remaining tools
 WORKDIR ${KALDI_PATH}/tools
-RUN make
+RUN su $USER -c "make"
 
 # compile kaldi source code
 WORKDIR ${KALDI_PATH}/src
