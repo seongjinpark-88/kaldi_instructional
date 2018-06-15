@@ -22,6 +22,8 @@ Resource 폴더 아래에 코드에서 사용한 자료들이 모여있습니다
 * Mac에서 Docker 설치법: https://docs.docker.com/docker-for-mac/install/
 * 전반적인 Docker 설치법: https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html#linux
 
+* **Note:** Windows Ubuntu의 경우 https://blog.aliencube.org/ko/2018/04/11/running-docker-and-azure-cli-from-wsl/ 를 참고하여 Docker를 설치한 이후, Windows Ubuntu에서 실행하시면 됩니다. 
+
 
 ### kaldi_instructional 내려받기
 
@@ -29,7 +31,7 @@ kaldi_instructional에 해당하는 파일들은 github에서 내려받으실 �
 
 ```bash
 # 작업을 위한 scratch 폴더를 / 아레에 생성
-mkdir /scratch
+sudo mkdir /scratch
 
 # /scratch 폴더로 이동
 cd /scratch
@@ -56,6 +58,8 @@ sudo git checkout
 ```bash
 docker pull mcapizzi/kaldi_instructional
 ```
+
+* **Note:** 윈도우 10에서 실행한 우분투에서 Docker를 사용하는 방법은 https://blog.aliencube.org/ko/2018/04/11/running-docker-and-azure-cli-from-wsl/ 를 참고하세요. 
 
 * git에서 받은 파일을 통해 `Docker`를 스스로 구축할 수도 있습니다. 현재는 `openfst` 버전의 변화로 인해 오류가 발생하여 확인중에 있습니다. 
 

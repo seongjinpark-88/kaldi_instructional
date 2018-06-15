@@ -6,7 +6,7 @@ MAINTAINER Michael Capizzi <mcapizzi@email.arizona.edu>
 # ENV and ARG variables
 ARG HOME=/scratch
 ENV SHELL=/bin/bash
-ENV KALDI_PATH=${HOME}/kaldi
+ENV KALDI_PATH=${HOME}/kaldi_instructional
 ENV KALDI_INSTRUCTIONAL_PATH=${KALDI_PATH}/egs/INSTRUCTIONAL
 
 # install dependencies
@@ -55,15 +55,15 @@ RUN pip install plotly pynlpl graphviz
 
 # clone kaldi_instructional
 WORKDIR ${HOME}
-RUN git clone https://github.com/seongjinpark-88/kaldi.git
+RUN git clone https://github.com/seongjinpark-88/kaldi_instructional.git
 WORKDIR ${KALDI_PATH}
 RUN git fetch && git checkout
 
 # install kaldi-specific tools
 WORKDIR ${KALDI_PATH}/tools
 # irstlm
-RUN extras/install_irstlm.sh
 ENV IRSTLM=${KALDI_PATH}/tools/irstlm
+RUN extras/install_irstlm.sh
 RUN export PATH=${PATH}:${IRSTLM}/bin
 
 # tensorflow (python)
@@ -81,7 +81,7 @@ RUN export PATH=${PATH}:${IRSTLM}/bin
 
 # compile remaining tools
 WORKDIR ${KALDI_PATH}/tools
-RUN make -j 3
+RUN su $USER -c "make"
 
 # compile kaldi source code
 WORKDIR ${KALDI_PATH}/src
