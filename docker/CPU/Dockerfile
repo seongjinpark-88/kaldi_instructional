@@ -81,13 +81,13 @@ RUN export PATH=${PATH}:${IRSTLM}/bin
 
 # compile remaining tools
 WORKDIR ${KALDI_PATH}/tools
-RUN su $USER -c "make"
+RUN make -j 3
 
 # compile kaldi source code
 WORKDIR ${KALDI_PATH}/src
 RUN ./configure --shared
-RUN make depend
-RUN make
+RUN make depend -j 4
+RUN make -j 4
 
 # compile TF RNN src
 #WORKDIR ${KALDI_PATH}/src/tfrnnlm
