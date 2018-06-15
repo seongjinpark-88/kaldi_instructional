@@ -8,7 +8,7 @@
 # -m = set amount of memory docker can use during build (in G)
 
 gpu=false
-mem=4g
+mem=8g
 
 while getopts "gm:" opt; do
     case ${opt} in

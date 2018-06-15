@@ -55,7 +55,7 @@ RUN pip install plotly pynlpl graphviz
 
 # clone kaldi_instructional
 WORKDIR ${HOME}
-RUN git clone https://github.com/seongjinpark-88/kaldi_instruction.git
+RUN git clone https://github.com/seongjinpark-88/kaldi_instructional.git
 WORKDIR ${KALDI_PATH}
 RUN git fetch && git checkout
 
