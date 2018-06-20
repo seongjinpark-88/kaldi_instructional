@@ -1,4 +1,4 @@
-# kaldi_instructional
+# Kaldi를 이용한 음성인식
 
 This repository is from https://github.com/michaelcapizzi/kaldi_instructional, which contains a simplified version of `Kaldi` toolkit used for instructional purposes.
 
@@ -22,7 +22,30 @@ Resource 폴더 아래에 코드에서 사용한 자료들이 모여있습니다
 * Mac에서 Docker 설치법: https://docs.docker.com/docker-for-mac/install/
 * 전반적인 Docker 설치법: https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html#linux
 
-* **Note:** Windows Ubuntu의 경우 https://blog.aliencube.org/ko/2018/04/11/running-docker-and-azure-cli-from-wsl/ 를 참고하여 Docker를 설치한 이후, Windows Ubuntu에서 실행하시면 됩니다. 
+* **Note:** Windows Ubuntu의 경우 https://blog.aliencube.org/ko/2018/04/11/running-docker-and-azure-cli-from-wsl/ 를 참고하여 Docker를 설치한 이후, Windows Ubuntu에서 실행하시면 됩니다(마지막에 c 드라이브를 마운트 시키는 부분은 건너뛰셔도 괜찮습니다.). 그리고 다음의 명령어를 통해서 컴퓨터의 c 드라이브를 Ubuntu에서도 불러올 수 있도록 설정을 해야합니다. 설정을 마친 이후에 Ubuntu를 종료 후 다시 시작하시면 됩니다. 이후 모든 과정은 `/c/Users/사용자이름/Desktop/scratch`에서 이루어집니다. 
+
+```bash
+echo '[automount]\nroot= /\noptions = "metadata"]' >> wsl.conf
+sudo mv wsl.conf /etc/
+
+## Ubuntu 재시작 후
+
+cd /c/Users/사용자이름/Desktop/scratch
+```
+
+**Note:** Windows 10 Pro 이하의 버전에서는 Hyper-V 지원의 문제로 ubuntu 및 Docker for Windows가 설치되지 않습니다. [Windows 10 Home에서 Docker 설치하기](https://gwonsungjun.github.io/how%20to%20install/2018/01/28/Dockerinstall/)에서 내용을 확인하시고 설치하시면 되겠습니다. 바탕화면에 생성된 `Docker Quickstart Terminal`은 마우스 우클릭 후 관리자 권한으로 실행하여주셔야 합니다. 
+
+**Note:** `Docker ToolBox`에서는 잘못된 사용을 방지하기 위해서 `Symbolic link(바로가기)`의 생성을 막아두었습니다. 혹 관련된 문제가 발생하는 경우 [이 곳](https://jessezhuang.github.io/article/virtualbox-tips/)에서 `How to Create Virtualenv in Shared Foler` 부분에 나오는 명령어를 실행하신 이후, `Docker Quickstart Terminal`을 관리자 권한으로 실행하여주시면 됩니다. 
+
+**Note:** Windows 10 Pro 이하 버전에서 사용하는 `Docker Toolbox`는 수동으로 CPU 및 메모리 수를 변경하여야 합니다. 기본적으로 CPU는 1개, 메모리는 1GB로 설정되어 있기 때문에 `kaldi` 실행이 어렵습니다. `Docker Quickstart Terminal`을 관리자 권한으로 실행하신 이후, 아래 명령어를 이용하여 값을 변경하실 수 있습니다. CPU나 메모리의 값은 본인의 컴퓨터 사양을 확인하시고 변경하시는 것이 좋으며, 아래는 CPU 4개, 4GB의 Docker를 구성하는 명령어입니다. 
+
+```bash
+docker-machine stop
+cd /c/Program\ Files/Oracle/VirtualBox
+./VBoxManage modifyvm default --cpus 4
+./vBoxManage modifyvm default --memory 4096
+docker-machine start
+```
 
 
 ### kaldi_instructional 내려받기
@@ -51,17 +74,57 @@ sudo git checkout
 
 앞으로 진행될 `kaldi` 관련 내용은 모두 `/scratch/kaldi_instructional` 폴더 아래에서 진행됩니다.
 
-### kaldi_instructional을 위한 `Docker` 설치
-
-* 원 저자는 kaldi_instructional에 있는 코드들을 실행하기 위한 Docker 환경을 DockerHub에 업로드 하였습니다. 다음과 같은 명령어를 통해서 `Docker hub`에서 해당 Docker container를 설치할 수 있습니다. 
+* **Note:** Windows 10 Home 버전의 경우 바탕화면에서 작업을 진행합니다. 바탕화면에 `scratch` 폴더를 생성하신 이후 `Docker Quickstart Terminal`을 관리자 권한으로 실행, 아래 명령어를 통해 `scratch` 폴더로 이동하시면 됩니다. `sudo` 명령어가 사용이 불가하므로, `sudo`를 제외한 나머지 부분을 위와 동일하게 입력하여주시면 됩니다. 
 
 ```bash
-docker pull mcapizzi/kaldi_instructional
+cd ~/Desktop/scratch
+
+```
+
+* **Note:** Windows 10 Pro 이상 버전을 사용하는 경우, 마운트 된 /c/를 이용하여 작업을 진행합니다. 바탕화면에 `scratch` 폴더를 생성하신 이후 아래 명령어를 통해 `scratch` 폴더로 이동하시면 됩니다. `cd` 이후의 과정은 우분투와 동일합니다.
+
+```bash
+cd /c/Users/사용자이름/Desktop/scratch
+```
+
+
+### kaldi_instructional을 위한 `Docker` 설치
+
+* 원 저자는 kaldi_instructional에 있는 코드들을 실행하기 위한 Docker 환경을 DockerHub에 업로드 하였습니다. 복잡한 방법 대신 `./start_container.sh` 파일을 실행하면 자동으로 Docker Hub에 올라와있는 원 저자의 `Docker`를 설치하고 실행하게 됩니다.  
+
+```bash
+# kaldi_instructional 폴더로 이동
+cd /scratch/kaldi_instructional
+
+# ./start_container 실행 (Windows 사용자는 sudo 없이 사용합니다)
+sudo ./start_container.sh
 ```
 
 * **Note:** 윈도우 10에서 실행한 우분투에서 Docker를 사용하는 방법은 https://blog.aliencube.org/ko/2018/04/11/running-docker-and-azure-cli-from-wsl/ 를 참고하세요. 
 
-* git에서 받은 파일을 통해 `Docker`를 스스로 구축할 수도 있습니다. 현재는 `openfst` 버전의 변화로 인해 오류가 발생하여 확인중에 있습니다. 
+* git에서 받은 파일을 통해 `Docker`를 스스로 구축할 수도 있습니다. `Docker`를 어떻게 구축하는지 궁금하신 분들은 `docker/` 아래에 있는 파일들을 살펴보셔도 좋을 것 같습니다. 다음의 명령어를 사용하여서 kaldi 실행에 필요한 `Docker` 환경을 직접 설치할 수 있습니다. **build_container.sh** 파일은 docker 설치에 필요한 `Dockerfile`의 내용을 불러와서 실제 docker container를 설치하는 과정을 수행하는 스크립트입니다. 
+
+```bash
+cd /scratch/kaldi/docker
+sudo ./build_container.sh
+
+```
+
+* **Note:** Windows 10 Home 버전을 사용하시는 경우, 아래의 명령어를 사용하시면 됩니다. 
+
+```bash
+cd ~/Desktop/scratch/docker
+./build_container.sh -w
+```
+
+* **Note:** Windows 10 Pro 이상을 사용하시는 경우, 아래의 명령어를 사용하시면 됩니다.
+
+```bash
+cd /c/Users/사용자이름/Desktop/scratch/docker
+./build_container.sh -w
+```
+
+
 
 ## `Docker` container 실행
 
@@ -98,6 +161,10 @@ root@b0b49e44f58b:/scratch/kaldi/egs/INSTRUCTIONAL# ./start_jupyter.sh
 ```
 
 다음과 같은 화면이 나온다면, `http://0.0.0.0:8880/?token=5ba706c2b543f5a70b4226ab8990c68d7c508ec3d56a59c0` (0.0.0.0:8880 뒤에 내용은 사용자마다 다를 수 있습니다) 를 사용하시는 브라우저 (크롬이나 파이어폭스 사용을 권장합니다) 주소창에 붙여넣으시면 `Jupyter` 창을 확인하실 수 있습니다. 
+
+**Note:** 현재 `0.0.0.0` 대신 임의의 알파벳+숫자의 조합으로 ip 주소가 출력되는 에러가 있습니다. 그럴 경우 해당 링크를 복사하여 붙여넣으신 이후  `http://`와 `:8880` 사이의 글자들을 **`0.0.0.0`** 으로 변경하셔서 다시 브라우저에서 열어주시면 됩니다. 
+
+**Note:** Windows 10 Home 버전 사용자의 경우 **0.0.0.0** 대신에 `Docker Quickstart Terminal` 실행 시 나오는 IP 주소를 입력하시면 됩니다. Windows 10 Pro 이상에서 Ubuntu를 사용하는 경우는 **0.0.0.0** 대신 **127.0.0.1**을 사용하시면 됩니다. 
 
 ## `tmux`를 이용하여 `jupyter` 실행하기
 
