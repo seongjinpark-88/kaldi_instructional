@@ -1,1 +1,1 @@
-../../../INSTRUCTIONAL/local/prepare_dict.sh
+../../../librispeech/s5/local/prepare_dict.sh

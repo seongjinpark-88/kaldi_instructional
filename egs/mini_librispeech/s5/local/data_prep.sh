@@ -1,1 +1,1 @@
-../../../INSTRUCTIONAL/local/data_prep.sh
+../../../librispeech/s5/local/data_prep.sh

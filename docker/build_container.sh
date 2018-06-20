@@ -4,16 +4,16 @@
 # NOTE: **MUST** be run from docker/
 
 # OPTIONAL ARGUMENTS
-# -g = set GPU_SUPPORT to true
+# -w = for windows 10 Home
 # -m = set amount of memory docker can use during build (in G)
 
-gpu=false
-mem=8g
+win=false
+mem=4g
 
-while getopts "gm:" opt; do
+while getopts "wm:" opt; do
     case ${opt} in
-        g)
-            gpu=true
+        w)
+            win=true
             ;;
         m)
             mem=${OPTARG}
@@ -25,14 +25,14 @@ while getopts "gm:" opt; do
     esac
 done
 
-if [[ ${gpu} == true ]]; then
+if [[ ${win} == true ]]; then
     docker build \
-        -f GPU/Dockerfile \
+        -f WIN/Dockerfile \
         -m ${mem} \
         -t docker-kaldi-instructional ../
 else
     docker build \
-        -f CPU/Dockerfile \
+        -f UNIX/Dockerfile \
         -m ${mem} \
         -t docker-kaldi-instructional ../
 fi

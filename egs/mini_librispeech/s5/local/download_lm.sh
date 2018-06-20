@@ -18,6 +18,7 @@ dst_dir=$2
 # for f in *; do echo "\"$f\") echo \"$(du -b $f | awk '{print $1}')\";;"; done
 function filesize() {
   case $1 in
+    "3-gram.pruned.1e-7.arpa.gz") echo "34094057";;
     "3-gram.pruned.3e-7.arpa.gz") echo "13654242";;
     "librispeech-lexicon.txt") echo "5627653";;
     "librispeech-vocab.txt") echo "1737588";;
@@ -57,11 +58,12 @@ function check_and_download () {
 
 mkdir -p $dst_dir
 
-for f in 3-gram.pruned.3e-7.arpa.gz librispeech-vocab.txt librispeech-lexicon.txt; do
+for f in 3-gram.pruned.1e-7.arpa.gz 3-gram.pruned.3e-7.arpa.gz librispeech-vocab.txt librispeech-lexicon.txt; do
   check_and_download $f || exit 1
 done
 
 cd $dst_dir
-ln -sf 3-gram.pruned.3e-7.arpa.gz lm_tgsmall.arpa.gz
+ln -sf 3-gram.pruned.3e-7.arpa.gz lm_tgsmall.arpa.gz 
+ln -sf 3-gram.pruned.1e-7.arpa.gz lm_tgmed.arpa.gz
 
 exit 0
