@@ -1,8 +1,8 @@
 # Kaldi를 이용한 음성인식
 
-This repository is from https://github.com/michaelcapizzi/kaldi_instructional, which contains a simplified version of `Kaldi` toolkit used for instructional purposes.
+This repository is from https://github.com/michaelcapizzi/kaldi_instructional, which contains a simplified version of `Kaldi` toolkit used for instructional purposes. I appreciate Michael Capizzi for his work. 
 
-원 Repository의 내용을 한국어로 바꾸었으며, 이해하는데 필요한 부분들을 추가하였습니다. 그리고 일정에 맞추어 4개의 작은 단원으로 나누었습니다. 
+원 Repository의 내용을 한국어로 바꾸었으며, 이해하는데 필요한 부분들을 추가하였습니다. 그리고 일정에 맞추어 4개의 작은 단원으로 나누었습니다. 원 작성자에게 감사의 말을 전하며, 코드 실행에 있어서 발생하는 오류는 제 책임입니다. 
 
 * Language Model
 * MFCC and Acoustic Model
