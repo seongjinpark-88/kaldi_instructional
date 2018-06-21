@@ -33,7 +33,7 @@ sudo mv wsl.conf /etc/
 cd /c/Users/사용자이름/Desktop/scratch
 ```
 
-**Note:** Windows 10 Pro 이하의 버전에서는 Hyper-V 지원의 문제로 ubuntu 및 Docker for Windows가 설치되지 않습니다. [Windows 10 Home에서 Docker 설치하기](https://gwonsungjun.github.io/how%20to%20install/2018/01/28/Dockerinstall/)에서 내용을 확인하시고 설치하시면 되겠습니다. 바탕화면에 생성된 `Docker Quickstart Terminal`은 마우스 우클릭 후 관리자 권한으로 실행하여주셔야 합니다. 
+**Note:** Windows 10 Pro 이하의 버전에서는 Hyper-V 지원의 문제로 ubuntu 및 Docker for Windows가 설치되지 않습니다. [Windows 10 Home에서 Docker 설치하기](https://gwonsungjun.github.io/how%20to%20install/2018/01/28/DockerInstall/)에서 내용을 확인하시고 설치하시면 되겠습니다. 바탕화면에 생성된 `Docker Quickstart Terminal`은 마우스 우클릭 후 관리자 권한으로 실행하여주셔야 합니다. 
 
 **Note:** `Docker ToolBox`에서는 잘못된 사용을 방지하기 위해서 `Symbolic link(바로가기)`의 생성을 막아두었습니다. 혹 관련된 문제가 발생하는 경우 [이 곳](https://jessezhuang.github.io/article/virtualbox-tips/)에서 `How to Create Virtualenv in Shared Foler` 부분에 나오는 명령어를 실행하신 이후, `Docker Quickstart Terminal`을 관리자 권한으로 실행하여주시면 됩니다. 
 
